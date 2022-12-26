@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+   image: postgres
+   environment:
+    POSTGRES_HOST_AUTH_METHOD: 'trust'
+  web_backend:
+   container_name: mach_pdca_backend
+   build:
+    context: ./backend/.
+    dockerfile: DockerfileDjango
+   tty: true
+   command: python3 manage.py runserver 0.0.0.0:8000
+   volumes:
+    - ./backend/django_project/mach_pdca_project:/code_
+   ports:
+    - "8000:8000"
+   depends_on:
+    - db
+  web_frontend:
+   container_name: mach_pdca_frontend
+   build:
+    context: ./frontend/.
+    dockerfile: DockerfileReact
+   tty: true
+   command:  "yarn start"
+   volumes:
+    - ./frontend/react_project/mach_pdca_react:/code_
+   ports:
+    - "3000:3000"
+   depends_on:
+    - web_backend   

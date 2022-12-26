@@ -1,0 +1,7 @@
+FROM node:14
+
+RUN mkdir /code_
+
+WORKDIR /code_
+
+COPY . /code_/
