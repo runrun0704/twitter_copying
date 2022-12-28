@@ -5,28 +5,35 @@ services:
    environment:
     POSTGRES_HOST_AUTH_METHOD: 'trust'
   web_backend:
-   container_name: mach_pdca_backend
+   container_name: #コンテナ名
    build:
     context: ./backend/.
     dockerfile: DockerfileDjango
    tty: true
-   command: python3 manage.py runserver 0.0.0.0:8000
+   # 1回目の"docker-compose up -d"は"djagno-admin startproject project名"
+   # その後"docker container exec コンテナ名 python3 manage.py startapp app名"
+   # 2回目以降の"docker-compose up -d"は"python3 manage.py runserver 0.0.0.0:8000"
+   command: django-admin startproject test-djagno
    volumes:
-    - ./backend/django_project/mach_pdca_project:/code_
+    - ./backend:/code_
    ports:
     - "8000:8000"
    depends_on:
     - db
   web_frontend:
-   container_name: mach_pdca_frontend
+   container_name: #コンテナ名
    build:
     context: ./frontend/.
     dockerfile: DockerfileReact
    tty: true
+   # まずは直接"frontend"配下で"npm create-react-app app名"
+   # その後は"docker-compose up -d"は"yarn start"
    command:  "yarn start"
    volumes:
+   # "npx create-react app"をする前は"./frontend:code_"
+   # 実行した後は"./frontend/app名:code_"
     - ./frontend/react_project/mach_pdca_react:/code_
    ports:
     - "3000:3000"
    depends_on:
-    - web_backend   
+    - web_backend
