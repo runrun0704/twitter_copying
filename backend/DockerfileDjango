@@ -6,7 +6,7 @@ RUN mkdir /code_
 
 WORKDIR /code_
 
-COPY requirements.txt /code_/
+COPY requirements.txt /code_
 
 RUN pip install -r requirements.txt
 

@@ -5,7 +5,7 @@ services:
    environment:
     POSTGRES_HOST_AUTH_METHOD: 'trust'
   web_backend:
-   container_name: #コンテナ名
+   container_name: twitter_backend
    build:
     context: ./backend/.
     dockerfile: DockerfileDjango
@@ -13,7 +13,7 @@ services:
    # 1回目の"docker-compose up -d"は"djagno-admin startproject project名"
    # その後"docker container exec コンテナ名 python3 manage.py startapp app名"
    # 2回目以降の"docker-compose up -d"は"python3 manage.py runserver 0.0.0.0:8000"
-   command: django-admin startproject test-djagno
+   command: python3 manage.py runserver 0.0.0.0:8000
    volumes:
     - ./backend:/code_
    ports:
@@ -21,7 +21,7 @@ services:
    depends_on:
     - db
   web_frontend:
-   container_name: #コンテナ名
+   container_name: twitter_frontend
    build:
     context: ./frontend/.
     dockerfile: DockerfileReact
@@ -32,7 +32,7 @@ services:
    volumes:
    # "npx create-react app"をする前は"./frontend:code_"
    # 実行した後は"./frontend/app名:code_"
-    - ./frontend/react_project/mach_pdca_react:/code_
+    - ./frontend/react_project:/code_
    ports:
     - "3000:3000"
    depends_on:
