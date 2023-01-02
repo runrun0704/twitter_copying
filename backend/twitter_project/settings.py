@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tweet.apps.TweetConfig',
+    'comment.apps.CommentConfig',
+    'good.apps.GoodConfig',
+    'tag.apps.TagConfig',
+    'user.apps.UserConfig',
     'rest_framework',
     'corsheaders'
 ]
