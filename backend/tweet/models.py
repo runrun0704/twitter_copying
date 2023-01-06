@@ -6,7 +6,7 @@ from tag.models import Tag
 class Tweet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=30)
-    body = models.TextFeild()
+    body = models.TextField()
     user_id = models.ForeignKey('User', on_delete=models.CASCADE, related_name='users')
     good_count = models.IntegerField(null=True)
     tags = models.ManyToManyField(Tag, through="TweetTag", null=True)
@@ -26,5 +26,5 @@ class User(models.Model):
 
 
 class TweetTag(models.Model):
-    tweet_id = models.ForeignKey('Tweet', on_delete=models.CASCADE)
-    tag_id = models.ForeignKey('Tag', on_delete=models.CASCADE)
+    tweet_id = models.ForeignKey(Tweet, on_delete=models.CASCADE)
+    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
