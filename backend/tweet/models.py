@@ -1,5 +1,7 @@
 from django.db import models
+
 import uuid
+
 from tag.models import Tag
 
 # Create your models here.
@@ -23,6 +25,9 @@ class User(models.Model):
     sex = models.CharField(max_length=1, choices=SEX)
     age = models.IntegerField()
     status = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
 
 
 class TweetTag(models.Model):
