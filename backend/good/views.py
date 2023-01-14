@@ -3,14 +3,10 @@ import django_filters
 
 from rest_framework import viewsets, filters
 
-from .models import Good, GoodTweet, GoodComment
-from .serializer import GoodSerializer, GoodTweetSerializer, GoodCommentSerializer
+from .models import GoodTweet, GoodComment
+from .serializer import GoodTweetSerializer, GoodCommentSerializer
 
 # Create your views here.
-class GoodViewSet(viewsets.ModelViewSet):
-    queryset = Good.objects.all()
-    serializer_class = GoodSerializer
-
 class GoodTweetViewSet(viewsets.ModelViewSet):
     queryset = GoodTweet.objects.all()
     serializer_class = GoodTweetSerializer
