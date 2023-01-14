@@ -1,5 +1,7 @@
 from django.db import models
+
 import uuid
+
 from tag.models import Tag
 
 # Create your models here.
