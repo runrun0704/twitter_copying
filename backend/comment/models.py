@@ -1,5 +1,7 @@
 from django.db import models
+
 import uuid
+
 from tweet.models import Tweet,User
 
 # Create your models here.
