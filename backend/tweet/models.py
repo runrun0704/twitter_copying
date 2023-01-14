@@ -26,6 +26,9 @@ class User(models.Model):
     age = models.IntegerField()
     status = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.name
+
 
 class TweetTag(models.Model):
     tweet_id = models.ForeignKey(Tweet, on_delete=models.CASCADE)
