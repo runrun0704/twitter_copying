@@ -23,9 +23,8 @@ function ApiGet() {
                             to={`/pdca/${item.id}`}
                             key={item.id}
                         >
-                            {item.id}
+                            {item.title}
                         </Link>
-                        <p>{item.title}</p>
                         <p>{item.body}</p>
                         <p>{item.user_id}</p>
                         <p>{item.good_count}</p>

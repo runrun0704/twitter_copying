@@ -4,7 +4,7 @@ import uuid
 
 from tag.models import Tag
 
-# Create your models here.
+# Tweet
 class Tweet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=30)
@@ -13,6 +13,10 @@ class Tweet(models.Model):
     good_count = models.IntegerField(null=True, default=0)
     tags = models.ManyToManyField(Tag, through="TweetTag", null=True)
 
+    def __str__(self):
+        return self.title
+
+# User
 SEX = (
     ('M', 'Mail'),
     ('F', 'Femail')
@@ -29,7 +33,7 @@ class User(models.Model):
     def __str__(self):
         return self.name
 
-
+# TweetTag
 class TweetTag(models.Model):
     tweet_id = models.ForeignKey(Tweet, on_delete=models.CASCADE)
     tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
