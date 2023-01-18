@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Tweet, User, TweetTag
 
 class TweetSerializer(serializers.ModelSerializer):
+    user_id = serializers.StringRelatedField()
     class Meta:
         model = Tweet
         fields = (
